@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>氏名検索</title>
+    <script>
+        // CSVファイルを読み込み、データをオブジェクトとして保存する関数
+        async function loadCsvData() {
+            const response = await fetch('list.csv');
+            const data = await response.text();
+            const rows = data.split('\n');
+            const nameDict = {};
+            rows.forEach(row => {
+                const [number, name] = row.split(',');
+                nameDict[number.trim()] = name.trim();
+            });
+            return nameDict;
+        }
+
+        // 入力された番号に対応する氏名を出力する関数
+        async function displayNames() {
+            const nameDict = await loadCsvData(); // CSVデータを読み込む
+            const input = document.getElementById('numberInput').value; // ユーザーの入力を取得
+            const numbers = input.split(',').map(num => num.trim()); // 入力を分割してトリムする
+            const names = numbers.map(num => nameDict[num]).filter(Boolean); // 対応する氏名を取得
+            document.getElementById('output').textContent = names.join(', '); // 結果を表示
+        }
+    </script>
+</head>
+<body>
+    <h1>氏名検索ツール</h1>
+    <p>番号を入力してください（カンマで区切って複数指定できます）：</p>
+    <input type="text" id="numberInput" placeholder="例: 1,20,45">
+    <button onclick="displayNames()">検索</button>
+    <p>結果: <span id="output"></span></p>
+</body>
+</html>
