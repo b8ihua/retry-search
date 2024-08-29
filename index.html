@@ -36,6 +36,15 @@
             margin-bottom: 20px;
             font-size: 16px;
         }
+        
+        div.box {
+            width: 300px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-size: 12px;
+        }
 
         input[type="text"]:focus, #outputBox:focus {
             border-color: #007bff;
@@ -117,10 +126,13 @@
 <body>
     <h1>再試対象者検索</h1>
 
-    検索する番号を入力してください<br>（カンマで区切って複数指定できます）
+    <div class="box">
+        検索する番号を入力してください<br>（カンマで区切って複数指定できます）
 <br>
     入学年が23年でない場合は，入学年と番号を入力して検索
 <br>（B225A001→22001）<br><br>
+    </div>
+
     <input type="text" id="numberInput" placeholder="例: 1,10,22001">
     <button onclick="displayNames()">検索</button>
     <br>
