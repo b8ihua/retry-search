@@ -14,7 +14,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
+            justify-content: top;
             height: 100vh;
         }
 
@@ -43,7 +43,7 @@
             border: 1px solid #ddd;
             border-radius: 5px;
             margin-bottom: 20px;
-            font-size: 12px;
+            font-size: 11px;
         }
 
         input[type="text"]:focus, #outputBox:focus {
@@ -126,15 +126,14 @@
 <body>
     <h1>再試対象者検索</h1>
 
-    <div class="box">
-        検索する番号を入力してください<br>（カンマで区切って複数指定できます）
-<br>
-    入学年が23年でない場合は，入学年と番号を入力して検索
-<br>（B225A001→22001）<br><br>
-    </div>
-
+ 
+番号を入力して検索（コンマで複数検索）
     <input type="text" id="numberInput" placeholder="例: 1,10,22001">
-    <button onclick="displayNames()">検索</button>
+    <div class="box">
+        <b>B235Aから始まる場合</b><br>番号のみを入力（B235A001→1）<br>
+        <b>B235A以外から始まる場合</b><br>入学年と番号を入力（B225A001→22001）
+            </div>
+            <button onclick="displayNames()">検索</button>
     <br>
     <textarea id="outputBox" readonly placeholder="ここに対象者が表示されます"></textarea>
     <p id="notFound"></p> <!-- 見つからない番号を表示 -->
